@@ -23,3 +23,22 @@ if (System.getenv('CI') == null) {
     build.dependsOn 'reloadServer'
 }
 ```
+
+
+server must run in a loop like such:
+```
+@echo off
+:loop
+java -server -Xms3G -Xmx3G -jar file.jar nogui
+timeout /t 3
+goto loop
+```
+
+or for linux:
+```shell
+while true
+do
+  java -server -Xms3G -Xmx3G -jar file.jar nogui 
+done
+Pause
+```
