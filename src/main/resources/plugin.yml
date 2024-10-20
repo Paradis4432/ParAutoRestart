@@ -1,0 +1,4 @@
+name: ParAutoRestart
+version: '${version}'
+main: co.smashmc.parautorestart.ParAutoRestart
+api-version: '1.16'
