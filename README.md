@@ -1,5 +1,4 @@
-requires to add
-make sure port matches and this plugin is built in the plugins folder
+requires to add this to gradle
 
 ```gradle
 task reloadServer {
@@ -23,7 +22,7 @@ if (System.getenv('CI') == null) {
     build.dependsOn 'reloadServer'
 }
 ```
-
+make sure port matches and this plugin is built in the plugins folder
 
 server must run in a loop like such:
 ```
