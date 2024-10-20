@@ -25,6 +25,15 @@ public class ReloadHandler implements HttpHandler {
             }
         });
 
-        sync(() -> Bukkit.getServer().reload());
+        sync(() -> {
+            try {
+                Bukkit.getServer().reload();
+            } catch (NoSuchMethodError error) {
+                // arclight server
+                Bukkit.getServer().shutdown();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
