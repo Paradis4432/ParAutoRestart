@@ -14,7 +14,7 @@ public class ReloadHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange t) {
         async(() -> {
-            String res = "reloaded";
+            String res = "reloading";
             try {
                 t.sendResponseHeaders(200, res.length());
                 OutputStream os = t.getResponseBody();

@@ -1,1 +1,25 @@
-a
+requires to add
+make sure port matches and this plugin is built in the plugins folder
+
+```gradle
+task reloadServer {
+    // https://github.com/Paradis4432/ParAutoRestart
+    doLast {
+        def url = new URL("http://localhost:10012/reload")
+        def connection = url.openConnection()
+        connection.requestMethod = 'GET'
+        connection.connect()
+
+        def responseCode = connection.responseCode
+        if (responseCode == 200) {
+            println "Server reloaded successfully."
+        } else {
+            println "Failed to reload server. Response code: $responseCode"
+        }
+    }
+}
+
+if (System.getenv('CI') == null) {
+    build.dependsOn 'reloadServer'
+}
+```
