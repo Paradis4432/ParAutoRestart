@@ -18,10 +18,18 @@ task reloadServer {
     }
 }
 
-if (System.getenv('CI') == null) {
+if (System.getenv('CI') == null && project.hasProperty('hotReloading') && project.property('hotReloading').toBoolean()) {
     build.dependsOn 'reloadServer'
 }
 ```
+
+property "hotReloading" can be set in 
+user/.gradle/gradle.properties
+i.e.
+```shell
+hotReloading=true
+```
+
 make sure port matches and this plugin is built in the plugins folder
 
 server must run in a loop like such:
@@ -41,3 +49,4 @@ do
 done
 Pause
 ```
+
